@@ -57,7 +57,11 @@ public class StoryAdapter extends BaseAdapter {
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
         TextView tvDescription = (TextView) convertView.findViewById(R.id.tv_description);
         ImageView ivStory = (ImageView) convertView.findViewById(R.id.iv_story_image);
+        ImageView icFavorite = (ImageView) convertView.findViewById(R.id.iv_favorite);
+        icFavorite.setTag(story.getId());
 
+        if (story.isFavorite()) icFavorite.setSelected(true);
+        else icFavorite.setSelected(false);
         tvTitle.setText(story.getTitle());
         TextViewUtils.makeFit(tvDescription);
         tvDescription.setText(story.getDescription());
@@ -67,5 +71,9 @@ public class StoryAdapter extends BaseAdapter {
 //        int chapterCount = StoryApplication.getInstance().getStoryDatabase().getChapterCount(story);
 
         return convertView;
+    }
+
+    public void setFavorite(View v) {
+
     }
 }

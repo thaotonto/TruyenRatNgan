@@ -128,4 +128,16 @@ public class StoryDatabase extends SQLiteAssetHelper {
         return new Chapter(chapterId, title, content);
     }
 
+    public void setFavorite(String id, boolean isFavorite) {
+        SQLiteDatabase db = getWritableDatabase();
+        int favorite = 0;
+        ContentValues values = new ContentValues();
+        if (isFavorite) favorite = 1;
+        values.put("is_favorite", favorite);
+        db.update("tbl_story", values, "id = ?", new String[]{
+                id
+        });
+        db.close();
+    }
+
 }
